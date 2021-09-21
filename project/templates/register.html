@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+body{
+  background-image: url("https://wallpaperaccess.com/full/2393102.jpg");
+}
+</style>
+<br><br>
+<div class="jumbotron">
+  <div class="" align = "center">
+    <h1>User Registration</h1>
+  </div>
+</div>
+<div class="container jumbotron bg-dark" style="color: white">
+  <form method="POST">
+    {{form.hidden_tag()}}
+    <div class="form-group">
+    {{form.username.label(class='form-group')}}
+    {{form.username(class='form-control')}}
+    </div>
+    <div class="form-group">
+      {{form.password.label(class='form-group')}}
+      {{form.password(class='form-control')}}<br>
+    </div>
+    <div class="form-group">
+      {{form.pass_confirm.label(class='form-group')}}
+      {{form.pass_confirm(class='form-control')}}<br>
+    </div>
+    {{form.submit(class='btn btn-success')}}
+  </form>
+</div>
+
+{% endblock %}

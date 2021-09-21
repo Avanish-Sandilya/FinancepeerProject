@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+.spacing{
+  margin-top: 20px;
+}
+body{
+  background: url("https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/02/shutterstock-black-design-how-to-black-cover.jpg");
+}
+</style>
+<br><br>
+<div class="jumbotron">
+  <div class="" align = "center">
+    <h1>Upload File</h1>
+  </div>
+</div>
+<div class = "jumbotron bg-dark container" style="color: white">
+  <form method="POST" enctype="multipart/form-data">
+    {{form.hidden_tag()}}
+    <!-- <div class="form-group"> -->
+
+    {{form.file.label(class='form-group')}}
+
+    {{form.file(class='form-control spacing')}}
+
+
+    {{form.submit(class='btn btn-primary spacing')}}
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+.jumbotron{
+  background-image: url("https://img.freepik.com/free-vector/black-dark-3d-low-poly-geometric-background_79145-393.jpg?size=626&ext=jpg");
+  color: #c4c4c4;
+}
+</style>
+<bR><Br>
+  <div class="jumbotron" align="center">
+    <h1>Entries Database</h1>
+  </div>
+
+{% if current_user.is_authenticated %}
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">UserId</th>
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in d.items%}
+      <tr>
+        <td>{{entry.id}}</td>
+        <td>{{entry.userId}}</td>
+        <td>{{entry.title}}</td>
+        <td>{{entry.body}}</td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+  <nav aria-label='Page Navigation'>
+    <!-- Pagination Links-->
+<div class="text-right">
+    <a href="{{ url_for('entries.view', page=d.prev_num) }}"
+       class="btn btn-outline-dark
+       {% if d.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+<!-- Loop through the number of pages to display a link for each-->
+    {% for page_num in d.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %}
+<!-- Check for the active page and set the link to "Active"-->
+            {% if d.page == page_num %}
+            <a href="{{ url_for('entries.view', page=page_num) }}"
+               class="btn btn-dark">
+                {{ page_num }}
+            </a>
+            {% else %}
+            <a href="{{ url_for('entries.view', page=page_num) }}"
+               class="btn btn-outline-dark">
+                {{ page_num }}
+            </a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    <a href="{{ url_for('entries.view', page=d.next_num) }}"
+       class="btn btn-outline-dark
+       {% if d.page == d.pages %}disabled{% endif %}">
+        &raquo;
+    </a>
+</div>
+<p class="text-right mt-3">
+   Showing page {{ d.page }} of {{ d.pages }}
+</p>
+  </nav>
+{% endif%}
+{% endblock %}

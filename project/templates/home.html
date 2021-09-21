@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+
+body{
+  background-image: url("https://5.imimg.com/data5/RJ/RW/TM/SELLER-22822449/tiles-design-floor-250x250.png")
+}
+</style>
+<br><Br>
+<div class="jumbotron">
+  <div class="" align = "center" style="font-weight: 100 !important">
+    <h1>Welcome to Anecdote</h1>
+    <h3>An application capable to input JSON based data and store it in the Database</h3>
+  </div>
+</div>
+<div class="jumbotron" style="background: #c4c4c4;">
+  <div style="font-weight: 100 !important">
+    <h2>Instructions:</h2>
+    <h5>Click <b>Upload File</b> From Navbar to upload a JSON file and store the data collected from the File</h5>
+    <h5>Click <b>View Data</b> From Navbar to view the collected Data</h5>
+  </div>
+</div>
+
+{%if message and message != ""%}
+  <div class="alert alert-info" role="alert">
+    {{message}}
+  </div>
+{%endif%}
+
+{%if not current_user.is_authenticated%}
+  <div class="alert alert-danger" role="alert">
+    Please Login to contiue using the Functionalities...
+  </div>
+{%endif%}
+
+
+
+{% endblock %}
